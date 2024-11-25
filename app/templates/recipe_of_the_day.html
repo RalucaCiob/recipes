@@ -1,0 +1,16 @@
+<!--
+Name: Raluca Ciobanu
+Student Number: c00289426
+Date: November 2024
+Description: recipe_of_the_day.html is the template used to display the randomly selected recipe.
+-->
+<!-- The search bar is visible on this page. recipe-images-id div is required by the search bar to work-->
+<div class="recipe-images" id="recipe-images-id">  
+  <div class="recipe-image-container">
+    <a href="/view/{{ recipe.recipe_id }}" hx-get="/view/{{ recipe.recipe_id }}" hx-target="#recipe-section-id" hx-swap="innerHTML">
+          <img src="{{ recipe.image_path }}"  alt="Recipe Image" class = "recipe-image">
+    </a>
+    <h2  style="text-align: center;">{{ recipe.name }}</h2>
+  </div>
+</div>
+

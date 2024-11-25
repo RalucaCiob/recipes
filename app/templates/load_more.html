@@ -1,0 +1,19 @@
+<!--
+Name: Raluca Ciobanu
+Student Number: c00289426
+Date: November 2024
+Description: load_more.html is the template associated with the action from the load more button
+-->
+<!-- Uses jinja on the server side to loop through each recipe in the recipes list and display them -->
+{% for recipe in recipes %}
+  <div class="recipe-image-container">
+    <a href="/view/{{ recipe.recipe_id }}" hx-get="/view/{{ recipe.recipe_id }}" hx-target="#outer-id" hx-swap="replace" class="view-recipe">
+          <img src="{{ recipe.image_path }}" class="recipe-image" alt="Recipe Image">
+    </a>
+    <h2>{{ recipe.name }}</h2>
+  </div>
+{% endfor %}
+<script>
+  // Writes the page number back to the DOM where {{ page }} is the page number from the server
+  document.getElementsByName("page-number")[0].value = "{{ page }}"; 
+</script>

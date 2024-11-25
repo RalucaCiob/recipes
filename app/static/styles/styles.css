@@ -1,0 +1,170 @@
+/* Name: Raluca Ciobanu
+   Student Number: c00289426
+   Date: November 2024.
+   styles.css is the CSS file used to style the website
+*/
+
+ /* The * is used to select all elements and apply the same style */   
+  * {
+  font-family: 'Helvetica', sans-serif;
+  color: #53682A;
+  }
+  /* Remove the underline from Hyperlinks and add margin */ 
+  a {
+    text-decoration: none;
+    margin-right: 10px;
+  }
+
+  /* Styling to centre an image and will be 95% of its parent's width. */
+    .centered-image {
+      width: 95%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 80px;
+    }
+  
+    /* Styling for recipe image layout, shows 4 images per row with a 10px gap */
+    .recipe-images {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* Four columns of equal width */
+      grid-gap: 10px; /* Spacing between images */
+    }
+  
+    /* Styling used for individual images, will be 80% of its parent's width */
+    .recipe-image {
+      width: 80%;
+      height: auto; /* Maintain aspect ratio */
+      transition: transform 0.2s ease-in-out; /* Add a smooth transition when mouse over */     
+    }
+
+    .recipe-image:hover {
+      transform: scale(1.05); /* Scale the image to make it 5% bigger on mouse over */
+    }
+
+    /* Styling for recipe image container, text will be centered */
+    .recipe-image-container { 
+      text-align: center;
+    }
+
+    /* Puts a gap between the home page image and the recipe images */
+    .recipe-section {
+      margin-top: 90px; 
+    }
+
+    /* Styling for the search bar. The search bar is absolute and will be 70% of its parent's width */
+    .search-box {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre the search bar */
+    background-color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    width: 70%;
+    font-size: 18px;
+    color: #999;
+    background-color: #F7F7F7; 
+  }
+
+  /* Colour for the placeholder text in the search bar */
+  .search-box::placeholder {
+    color: #ccc;
+  }
+
+  /* Styling for the "No recipes found" message */
+  .messages {
+    font-size: 24px;
+    color: #999;
+    text-align: center;
+  }
+
+  /* Styling for viewing recipes. Ingredients and Method are two separate columns */
+  .columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+
+/* Styling for each individual column */
+.column {
+  flex-basis: 35%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+}
+
+.left-column h2, .right-column h2 {
+  text-align: center;
+}
+
+.left-column {
+  background-color: #f7f7f7; 
+  margin-left: -100px;
+}
+
+.right-column {
+  background-color: #fff; 
+}
+
+h2 {
+  margin-top: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/* Styling for the "Load more" button which appears at the bottom of the page after 12 recipes are shown  */
+.load-more-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Change the background colour of the "Load more" button when mouse over */
+.load-more-button:hover {
+  background-color: #3e8e41;
+}
+
+/* Styling for the sort options section at the top of the page  */
+#sort-options {
+    float: right;    
+    margin-right: 10px;    
+  }
+  
+  #sort-options, #sort-options option {
+    font-size: 16px;
+  }
+
+  /* Styling for the sort text */
+.sort-text {
+  display: block; 
+  margin-bottom: 3px;
+}
+
+  /* A rule to ensure the "Recipe of the day" link appears on the same line as the "All Recipes" link */
+.outer   {
+  display: inline;
+}

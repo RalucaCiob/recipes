@@ -1,0 +1,34 @@
+<!--
+Name: Raluca Ciobanu
+Student Number: c00289426
+Date: November 2024
+Description: search_results.html is the template used to display the list of recipes matching the search text.
+-->
+    {% if recipes %}
+      {% for recipe in recipes %}
+        <div class="recipe-image-container">                  
+          <a href="/view/{{ recipe.recipe_id }}" hx-get="/view/{{ recipe.recipe_id }}" hx-target="#recipe-section-id" hx-swap="innerHTML" class="view-recipe">
+          <img src="{{ recipe.image_path }}" class="recipe-image" alt="Recipe Image">
+          </a>
+          <h2>{{ recipe.name }}</h2>            
+        </div>
+      {% endfor %}
+    {% else %}              
+      <p class="messages">No recipes found.</p>
+    {% endif %}
+    <script>      
+      // The load more button uses hx-get to invoke the /load_more/ route which returns a subset
+      // of all recipes (not the recipes the user has searched for).
+      // The simplest solution is to just return all recipes searched for and remove the load more
+      //  button from the DOM.
+      var button = document.getElementById("load-more-button-id");
+      // Remove the button from the DOM
+      if (button)
+      {
+        button.remove();
+      }      
+    </script>
+  
+            
+
+

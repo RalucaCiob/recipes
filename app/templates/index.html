@@ -1,0 +1,77 @@
+<!--
+Name: Raluca Ciobanu
+Student Number: c00289426
+Date: November 2024
+Description: index.html is the main page of the recipe website 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipes with HTMX</title>    
+    <!-- Tell Flask to look for the css file under static/styles/styles.css-->  
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+    <!-- Source for htmx library -->
+    <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
+</head>
+<body>
+   <!-- Create a hyperlink to show all recipes which is available from any page. This links to the root URL (/) -->
+   <a href="/" id="all-recipes-link-id" class="all-recipes-link">All Recipes</a> 
+       <div class="outer" id="outer-id">  
+          <!-- Create a hyperlink to show the recipe of the day (a randomly picked recipe)
+           hx-get will get the recipe of the day from the server using the /recipe_of_the_day route
+           hx-swap will replace the innerHTML of the target element with the response from the server -->
+          <a href="/recipe_of_the_day" hx-get="/recipe_of_the_day" hx-target="#recipe-section-id" hx-swap="innerHTML">Recipe of the Day</a>       
+          <!-- Display the landing page image -->
+          <img id="home-page-image" src="{{ image_path }}" class="centered-image">
+          <!-- Create a search bar. hx-trigger will trigger the search when the user types in the search bar and there
+           is a delay of 1 second (1s) between the trigger and the request to the server to get the search results.
+           hx-get will get the search results from the server using the /search route.
+           hx-swap will replace the innerHTML of the target element with the response from the server -->               
+          <input type="text" id="search-input-id" name="search-text" class="search-box" id="search-box" placeholder="Start searching..."
+          hx-trigger="keyup changed delay:1s" hx-get="/search" hx-target="#recipe-images-id" hx-swap="innerHTML">
+          <div id="sort-options">    
+            <span class="sort-text">Sort by</span>       
+            <!-- Create a drop-down menu for sorting the recipes, recipes can be sorted by default order (table order), 
+             ascending or descending by recipe name. hx-swap will replace the innerHTML of the target 
+             element with the response from the server. hx-include will include the page number and sort order as 
+             query parameters -->        
+            <select name="sort_order" id="sort-options" hx-get="/view_by_recipe_name" 
+              hx-include="[name='page-number'], [name='sort-order']" hx-target="#recipe-images-id" hx-swap="innerHTML">
+            <option value="default">Recommended recipes</option>
+            <option value="asc">Sort Asc By Recipe Name (A-Z)</option>
+            <option value="desc">Sort Dsc By Recipe Name (Z-A)</option>
+          </select>
+        </div>
+          <div class="recipe-section" id="recipe-section-id">
+            <div class="recipe-images" id="recipe-images-id">  
+              <!-- Uses jinja on the server side to loop through each recipe in the recipes list and display them -->
+              {% if recipes %}
+                {% for recipe in recipes %}
+                  <div class="recipe-image-container"> 
+                    <!-- Each image has a link to the corresponding recipe page. hx-get will get the recipe details from 
+                     the server using the /view route passing the recipe id as a query parameter.  -->                 
+                    <a href="/view/{{ recipe.recipe_id }}" hx-get="/view/{{ recipe.recipe_id }}" hx-target="#recipe-section-id" hx-swap="innerHTML" class="view-recipe">
+                    <img src="{{ recipe.image_path }}" class="recipe-image" alt="Recipe Image">
+                    </a>
+                    <h2>{{ recipe.name }}</h2>                  
+                  </div>
+                {% endfor %}
+              {% else %}              
+                <p class="messages">No recipes found.</p>
+              {% endif %}
+            </div>          
+                      
+          <!-- defines a hidden input field to store the page number in the DOM from the server -->
+          <input type="hidden" name="page-number" value="{{ page }}">
+                 
+          <!-- Define a button to allow the user load more recipes when they click the button 
+           hx-get will get the recipes from the server using the /load_more route.
+           hx-include will include the page number in the query parameters -->
+          <button id="load-more-button-id" hx-get="/load_more/" hx-include="[name='page-number']"
+          hx-target="#recipe-images-id" hx-swap="beforeend" hx-trigger="click"
+          class="load-more-button">Load More Recipes</button>                             
+        </div>   
+      </div>            
+</body>
+</html>
+

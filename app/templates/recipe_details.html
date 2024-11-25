@@ -1,0 +1,40 @@
+<!--
+Name: Raluca Ciobanu
+Student Number: c00289426
+Date: November 2024
+Description: recipe_details.html is the template used to display the details of a single recipe.
+-->
+<div class="columns" id="columns-id">
+    <script>     
+      // This script removes the home page image, the sort options and the search bar from the DOM
+      var img = document.getElementById("home-page-image");
+      if (img)
+      {
+        img.remove();
+      }
+      var sortOpts = document.getElementById("sort-options");
+      if (sortOpts)
+      {
+        sortOpts.remove();
+      }
+      var searchBox = document.getElementById("search-input-id");
+      if (searchBox)
+      {
+        searchBox.remove();
+      }    
+    </script>
+    <!-- Displays the recipe ingredients and the method -->
+    <div class="column left-column">               
+      <h2>Recipe Ingredients</h2>               
+      <ul>                          
+          {% for ingredient in ingredients %}
+            <li>{{ ingredient.ingredient_name }} </li>
+          {% endfor %}
+      </ul>             
+    </div>
+    <div class="column right-column">
+      <h2>Method</h2>
+          <p>{{ recipe.method }}</p>
+    </div>
+</div>
+    
