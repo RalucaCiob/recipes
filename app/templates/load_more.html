@@ -17,3 +17,12 @@ Description: load_more.html is the template associated with the action from the 
   // Writes the page number back to the DOM where {{ page }} is the page number from the server
   document.getElementsByName("page-number")[0].value = "{{ page }}"; 
 </script>
+<!-- The following if statement uses jinja on the server side to check if there are no more recipes to show.
+     If so, get a reference to the "load more" button and remove it from the DOM
+-->
+{% if loadMore == False %}
+<script>
+  var button=document.getElementById("load-more-button-id");
+  button.remove();
+</script>
+{% endif %}
