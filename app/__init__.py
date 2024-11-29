@@ -15,7 +15,7 @@ import csv
 # is used.
 # This line provides a way to configure the directory where the sqlite database is stored.
 # This is useful for testing the web app on localhost without requiring a separate database server.
-persistent_path = os.getenv("PERSISTENT_STORAGE_DIR", os.path.dirname(os.path.realpath(__file__)))
+# persistent_path = os.getenv("PERSISTENT_STORAGE_DIR", os.path.dirname(os.path.realpath(__file__)))
 
 # Creates an instance of the Flask web framework using the name of the current module
 app = Flask(__name__)
@@ -25,15 +25,15 @@ EXPLAIN_TEMPLATE_LOADING=True
 app.logger.setLevel("INFO")
 
 # Set the path to the sqlite database file
-db_path = os.path.join(persistent_path, "sqlite.db")
+# db_path = os.path.join(persistent_path, "sqlite.db")
 
 # Define some configuration settings for the Flask-SQLAlchemy extension
 # Set the URI of the key SQLALCHEMY_DATABASE_URI to a string 
 # like sqlite:///path/to/db/sqlite.db
-app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{db_path}'
+# app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{db_path}'
 
 # This config is for the PostgreSQL database.
-#app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:mysecretpassword@localhost:5432/mydatabase"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://recipe_db_mm1t_user:eZ66zb5hC04ilkDDvLNXd82bw8JqQ7NC@dpg-ct4tiv3tq21c7395kopg-a/recipe_db_mm1t"
 
 # Stop SQLAlchemy printing SQL statements as they are executed.
 app.config["SQLALCHEMY_ECHO"] = False
