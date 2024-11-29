@@ -92,6 +92,7 @@ def view_recipe(recipe_id):
 @app.route("/load_more/", methods=["GET"])
 def load_more():
    
+    loadMore = True 
     per_page = 12
     # page 1 is served from the root URL (/) to template index.html
     # The query parameter page-number indicates the *last* page number that
@@ -101,8 +102,9 @@ def load_more():
     # if there are no more recipes, ensure page number will not increment
     # indefinitely (page number is written back to the DOM on each response)
     if not recipes:
-        page = page - 1  
-    return render_template('load_more.html', recipes=recipes, page=page)
+        page = page - 1 
+        loadMore = False 
+    return render_template('load_more.html', recipes=recipes, page=page, loadMore=loadMore)
 
 
 # This API route is used to sort the recipes alphabetically.
@@ -132,3 +134,4 @@ def randomRecipe():
     # Render the recipe details template
     return render_template("recipe_of_the_day.html", recipe=recipe)
  
+
