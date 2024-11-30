@@ -53,8 +53,8 @@ def search():
         # distinct is used to get a unique list of recipe ids
         recipe_ids = db.session.query(Recipe.recipe_id).join(RecipeIngredient).filter(
         db.or_(
-            Recipe.name.like(f'%{search_text}%'),
-            RecipeIngredient.ingredient_name.like(f'%{search_text}%')
+            Recipe.name.ilike(f'%{search_text}%'),
+            RecipeIngredient.ingredient_name.ilike(f'%{search_text}%')
         )
         ).distinct().all()
 
