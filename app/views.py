@@ -134,4 +134,3 @@ def randomRecipe():
     # Render the recipe details template
     return render_template("recipe_of_the_day.html", recipe=recipe)
  
-
