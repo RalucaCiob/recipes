@@ -50,7 +50,7 @@ Description: index.html is the main page of the recipe website
                   <div class="recipe-image-container"> 
                     <!-- Each image has a link to the corresponding recipe page. hx-get will get the recipe details from 
                      the server using the /view route passing the recipe id as a query parameter.  hx-get="/view/{{ recipe.recipe_id }}"-->                 
-                    <a href="/view/{{ recipe.recipe_id }}"  hx-target="#recipe-section-id" hx-swap="innerHTML" class="view-recipe">
+                    <a href="/view/{{ recipe.recipe_id }}"  hx-swap="innerHTML" class="view-recipe">
                     <img src="{{ recipe.image_path }}" class="recipe-image" alt="Recipe Image">
                     </a>
                     <h2>{{ recipe.name }}</h2>                  
